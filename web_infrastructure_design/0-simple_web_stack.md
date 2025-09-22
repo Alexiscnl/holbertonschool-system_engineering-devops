@@ -8,17 +8,18 @@ A simple one-server web infrastructure that hosts a website accessible at **www.
 
 ```mermaid
 flowchart LR
-    U[Utilisateur<br/>Navigateur] -->|1.1 Requête DNS: www.foobar.com| DNS[DNS récursif]
+    U["Utilisateur Navigateur"] -->|1.1 Requête DNS: www.foobar.com| DNS["DNS récursif"]
     DNS -->|1.2 Réponse: A=8.8.8.8| U
-    U -->|1.3 HTTP/HTTPS vers 8.8.8.8| NGINX[Nginx<br/>(serveur web)]
+    U -->|1.3 HTTP/HTTPS vers 8.8.8.8| NGINX["Nginx (serveur web)"]
 
-    subgraph S[Serveur 8.8.8.8]
-        NGINX -->|Proxy / FastCGI / uWSGI| APP[Serveur applicatif<br/>(code)]
-        APP -->|SQL| DB[(MySQL<br/>Base de données)]
-        NGINX -. fichiers statiques .-> FS[[Fichiers applicatifs<br/>(HTML/CSS/JS, assets)]]
+    subgraph S["Serveur 8.8.8.8"]
+        NGINX -->|Proxy / FastCGI / uWSGI| APP["Serveur applicatif (code)"]
+        APP -->|SQL| DB[("MySQL - Base de données")]
+        NGINX -. fichiers statiques .-> FS["Fichiers applicatifs (HTML/CSS/JS, assets)"]
     end
 
-    DB --- noteDB[Stocke les données<br/>(utilisateurs, contenus, etc.)]
+    DB --- noteDB["Stocke les données (utilisateurs, contenus, etc.)"]
+
 ```
 
 ```mermaid
